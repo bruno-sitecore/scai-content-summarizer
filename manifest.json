@@ -1,0 +1,15 @@
+{
+    "manifest_version" : 3,
+    "name": "Hack to the Future: Content Summarizer",
+    "version": "1.0.0",
+    "icons": {
+        "16": "src/images/icons/scai-16.png",
+        "128": "src/images/icons/scai-128.png"
+    },
+
+    "content_scripts": [],
+
+    "background": {},
+
+    "permissions": []
+}
