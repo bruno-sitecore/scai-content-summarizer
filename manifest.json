@@ -7,9 +7,19 @@
         "128": "src/images/icons/scai-128.png"
     },
 
+    "permissions": [ "sidePanel" ],
+
     "content_scripts": [],
 
-    "background": {},
+    "background": {
+        "service_worker": "service-worker.js"
+    },
 
-    "permissions": []
+    "side_panel": { 
+        "default_path": "sidepanel.html"
+    },
+
+    "action": {
+        "default_title": "Click to Open Panel"
+    }
 }
