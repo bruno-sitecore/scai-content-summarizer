@@ -1,0 +1,6 @@
+.panel { background-color: #cfcfcf; padding: 1em; margin: 0 0 1em 0; }
+.panel.closed { display: none; }
+.panel.opened { display: block; }
+
+select, input { display: block; width: 100%; }
+textarea { width: 100%; height: 200px; }

@@ -2,8 +2,39 @@
 <html>
     <head>
         <title>Content Summarizer</title>
+
+        <link type="text/css" href="css/default.css" rel="stylesheet" />
     </head>
     <body>
         <h1>Content Summarizer &amp; Segmenter</h1>
+
+        <label for="SourceArticle">Source Article</label>
+        <textarea id="SourceArticle"></textarea>
+
+        <ul id="FieldList"></ul>
+
+        <button id="OpenNewSummaryField">Add Summary Field</button>
+
+        <div id="NewSummaryField" class="panel closed">
+
+            <select id="SummaryType">
+                <option value="title">Title</option>
+                <option value="short-summary">Short Summary (1 sentence)</option>
+                <option value="long-summary">Long Summary (1 paragraph)</option>
+                <option value="social-linkedin">Social: LinkedIn</option>
+                <option value="social-facebook">Social: Facebook</option>
+                <option value="social-x">Social: X</option>
+                <option value="meta-keywords">Meta: Keywords</option>
+                <option value="meta-description">Meta: Description</option>
+            </select>
+
+            <input type="text" id="SummaryPrompt" />
+
+            <button id="AddSummaryField">Add to List</button>
+
+        </div>
+
+        <script src="sidepanel.js"></script>
+
     </body>
 </html>
