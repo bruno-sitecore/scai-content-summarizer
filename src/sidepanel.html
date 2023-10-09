@@ -8,29 +8,43 @@
     <body>
         <h1>Content Summarizer &amp; Segmenter</h1>
 
-        <label for="SourceArticle">Source Article</label>
-        <textarea id="SourceArticle"></textarea>
+        <div class="section">
 
-        <ul id="FieldList"></ul>
+            <label for="SourceArticle">Source Article</label>
+            <textarea id="SourceArticle"></textarea>
 
-        <button id="OpenNewSummaryField">Add Summary Field</button>
+        </div>
+
+        <div class="section">
+
+            <ul id="FieldList"></ul>
+            <button id="OpenNewSummaryField" class="btn">Add Summary Field</button>
+
+        </div>
 
         <div id="NewSummaryField" class="panel closed">
 
-            <select id="SummaryType">
-                <option value="title">Title</option>
-                <option value="short-summary">Short Summary (1 sentence)</option>
-                <option value="long-summary">Long Summary (1 paragraph)</option>
-                <option value="social-linkedin">Social: LinkedIn</option>
-                <option value="social-facebook">Social: Facebook</option>
-                <option value="social-x">Social: X</option>
-                <option value="meta-keywords">Meta: Keywords</option>
-                <option value="meta-description">Meta: Description</option>
-            </select>
+            <div class="row">
+                <label for="SummaryType">Type of Summary</label>
+                <select id="SummaryType">
+                    <option value=""></option>
+                    <option value="title">Title</option>
+                    <option value="short-summary">Short Summary (1 sentence)</option>
+                    <option value="long-summary">Long Summary (1 paragraph)</option>
+                    <option value="social-linkedin">Social: LinkedIn</option>
+                    <option value="social-facebook">Social: Facebook</option>
+                    <option value="social-x">Social: X</option>
+                    <option value="meta-keywords">Meta: Keywords</option>
+                    <option value="meta-description">Meta: Description</option>
+                </select>
+            </div>
 
-            <input type="text" id="SummaryPrompt" />
+            <div class="row">
+                <label for="SummaryPrompt">Prompt</label>
+                <input type="text" id="SummaryPrompt" />
+            </div>
 
-            <button id="AddSummaryField">Add to List</button>
+            <button id="AddSummaryField" class="btn">Add to List</button>
 
         </div>
 
