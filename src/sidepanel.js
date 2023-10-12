@@ -70,6 +70,7 @@
         populateDropdowns();
         wireUI();
         loadData();
+        renderSummaries();
 
     }
 
@@ -139,7 +140,7 @@
         // When "Add to List" button is clicked, validate the form and update the Summaries list
         let addToList = document.getElementById("AddSummaryField");
         if (addToList) {
-            addToList.addEventListener("click", () => handleAddToListClick(e));
+            addToList.addEventListener("click", (e) => handleAddToListClick(e));
         }
 
         // When the "Audience" dropdown changes, save the value in localStorage
@@ -174,14 +175,32 @@
 
     }
 
+    /**
+     * Renders the user's summary list data into unordered list items. Also sets up related delete functionality.
+     */
     function renderSummaries () {
 
+        summaryListUL = document.getElementById("SummaryList");
+        summaryListUL.innerHTML = "";
+
         // Build HTML
+        summaryList.forEach((item) => {
 
-        // Display HTML
+            let listItem = document.createElement("li");
+            let h3Header = document.createElement("h3");
+            let deleteButton = document.createElement("button");
 
-        // Wire-up delete buttons
+            h3Header.innerHTML = item.label;
+            listItem.appendChild(h3Header);
 
+            deleteButton.innerHTML = "remove";
+            deleteButton.setAttribute("data-summary-id", item.value);
+            deleteButton.addEventListener("click", (e) => handleDeleteSummaryClick(e));
+            listItem.appendChild(deleteButton);
+
+            summaryListUL.appendChild(listItem);
+
+        });
     }
 
     /**
@@ -214,31 +233,66 @@
 
     /**
      * When the SummaryType dropdown changes, load the 'data-prompt' attribute from the 'option' element and display it in the prompt field.
-     * @param {object} e - 'change' event object. 
+     * @param {object} e - 'change' event object (dropdown).
      */
     function handleSummaryTypeChange (e) {
         let promptText = e.currentTarget.options[e.currentTarget.selectedIndex].getAttribute("data-prompt");
         document.getElementById("SummaryPrompt").value = promptText;
     }
 
+    /**
+     * When the 'Add to List' button in the summary editor is clicked, the item is validated and added to the user's summary list.
+     * @param {object} e - 'click' event object (button).
+     */
     function handleAddToListClick (e) {
 
+        let dropdown = document.getElementById("SummaryType");
+
         // Validate form (ensure something is selected)
+        if (dropdown.value && dropdown.value != '') {
 
-        // If existing type is in list, update numeric label (items in list + 1)
+            let existing = summaryList.find((item) => item.value === dropdown.value);
+            if (existing) {
+                alert("Already added this summary type. Please choose another.");
+                return;
+            }
 
-        // Add to summaryList
+            // Get object from the summaryOptions list
+            let summaryItem = summaryOptions.find((item) => item.value === dropdown.value);
 
-        // Save data
+            // Add to summaryList
+            summaryList.push(summaryItem);
+
+            // Save + render data
+            saveData();
+            renderSummaries();
+        }
 
     }
 
     /**
      * When the Audience dropdown changes, save all form data.
-     * @param {object} e - 'change' event object.
+     * @param {object} e - 'change' event object (dropdown).
      */
     function handleAudienceTypeChange (e) {
         saveData();
+    }
+
+    /**
+     * Removes a summary item from the user's summary list; refreshes the datastore and re-renders the summary list.
+     * @param {object} e - 'click' event object (delete button).
+     */
+    function handleDeleteSummaryClick (e) {
+
+        let summaryID = e.currentTarget.getAttribute("data-summary-id");
+
+        // Use inverted filter to remove the item from the summaryList
+        // Note: summaryList should be unique; more than one identical item in this list will cause
+        // all of those items to be removed
+        summaryList = summaryList.filter((item) => item.value !== summaryID);
+
+        saveData();
+        renderSummaries();
     }
 
     init();
