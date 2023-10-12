@@ -90,7 +90,7 @@
     }
 
     /**
-     * 
+     * Builds a dropdown for selecting predefined prompts.
      * @param {Object} dropdown - HTML 'select' element from the DOM.
      * @param {array} data - List of  JSON objects representing the dropdown data (value, label, prompt).
      */
@@ -136,6 +136,12 @@
             summaryType.addEventListener("change", (e) => handleSummaryTypeChange(e));
         }
 
+        // When "Add to List" button is clicked, validate the form and update the Summaries list
+        let addToList = document.getElementById("AddSummaryField");
+        if (addToList) {
+            addToList.addEventListener("click", () => handleAddToListClick(e));
+        }
+
         // When the "Audience" dropdown changes, save the value in localStorage
         let audienceType = document.getElementById("AudienceType");
         if (audienceType) {
@@ -157,7 +163,7 @@
     }
 
     /**
-     *
+     * Closes the summary editor interface by updated CSS classes.
      * @param {object} e - 'click' event object.
      */
     function closeSummaryEditor (e) {
@@ -165,6 +171,16 @@
         let panel = document.getElementById("NewSummaryField");
         panel.classList.remove("opened");
         panel.classList.add("closed");
+
+    }
+
+    function renderSummaries () {
+
+        // Build HTML
+
+        // Display HTML
+
+        // Wire-up delete buttons
 
     }
 
@@ -203,6 +219,18 @@
     function handleSummaryTypeChange (e) {
         let promptText = e.currentTarget.options[e.currentTarget.selectedIndex].getAttribute("data-prompt");
         document.getElementById("SummaryPrompt").value = promptText;
+    }
+
+    function handleAddToListClick (e) {
+
+        // Validate form (ensure something is selected)
+
+        // If existing type is in list, update numeric label (items in list + 1)
+
+        // Add to summaryList
+
+        // Save data
+
     }
 
     /**
