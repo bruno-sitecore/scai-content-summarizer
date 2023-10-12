@@ -63,13 +63,19 @@
 
     ];
 
+    let summaryList = [];
+
     function init () {
 
         populateDropdowns();
         wireUI();
+        loadData();
 
     }
 
+    /**
+     * Populates data in dropdown from configuration.
+     */
     function populateDropdowns () {
 
         // Summary Type dropdown
@@ -83,6 +89,11 @@
 
     }
 
+    /**
+     * 
+     * @param {Object} dropdown - HTML 'select' element from the DOM.
+     * @param {array} data - List of  JSON objects representing the dropdown data (value, label, prompt).
+     */
     function buildPromptDropdown (dropdown, data) {
 
         // Clear dropdown
@@ -108,6 +119,9 @@
         });
     }
 
+    /**
+     * Attaches events to interactive UI elements.
+     */
     function wireUI () {
 
         // "Add Summary Field" button should open the Summary Editor
@@ -122,8 +136,18 @@
             summaryType.addEventListener("change", (e) => handleSummaryTypeChange(e));
         }
 
+        // When the "Audience" dropdown changes, save the value in localStorage
+        let audienceType = document.getElementById("AudienceType");
+        if (audienceType) {
+            audienceType.addEventListener("change", (e) => handleAudienceTypeChange(e));
+        }
+
     }
 
+    /**
+     * Displays the summary editor interface by updating CSS classes.
+     * @param {object} e - 'click' event object.
+     */
     function openSummaryEditor (e) {
 
         let panel = document.getElementById("NewSummaryField");
@@ -132,6 +156,10 @@
 
     }
 
+    /**
+     *
+     * @param {object} e - 'click' event object.
+     */
     function closeSummaryEditor (e) {
 
         let panel = document.getElementById("NewSummaryField");
@@ -140,9 +168,49 @@
 
     }
 
+    /**
+     * Saves form state data to localStorage.
+     */
+    function saveData () {
+
+        // List of summaries already set up by the user
+        localStorage.setItem("summaryList", JSON.stringify(summaryList));
+
+        // Audience type selection
+        localStorage.setItem("audienceType", document.getElementById("AudienceType").value);
+    }
+
+    /**
+     * Loads form state data from localStorage.
+     */
+    function loadData () {
+
+        // List of summaries already set up by the user
+        let rawSummaries = localStorage.getItem("summaryList");
+        if (rawSummaries)
+            summaryList = JSON.parse(rawSummaries);
+
+        // Audience type selection
+        let rawAudience = localStorage.getItem("audienceType");
+        if (rawAudience)
+            document.getElementById("AudienceType").value = rawAudience || '';
+    }
+
+    /**
+     * When the SummaryType dropdown changes, load the 'data-prompt' attribute from the 'option' element and display it in the prompt field.
+     * @param {object} e - 'change' event object. 
+     */
     function handleSummaryTypeChange (e) {
-        var promptText = e.currentTarget.options[e.currentTarget.selectedIndex].getAttribute("data-prompt");
+        let promptText = e.currentTarget.options[e.currentTarget.selectedIndex].getAttribute("data-prompt");
         document.getElementById("SummaryPrompt").value = promptText;
+    }
+
+    /**
+     * When the Audience dropdown changes, save all form data.
+     * @param {object} e - 'change' event object.
+     */
+    function handleAudienceTypeChange (e) {
+        saveData();
     }
 
     init();
