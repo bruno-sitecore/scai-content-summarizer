@@ -33,7 +33,7 @@
         },
         {
             "value": "meta-keywords",
-            "label": "Meta: Keyword",
+            "label": "Meta: Keywords",
             "prompt": "Create a list of 5 to 10 keywords separated by commas from this article"
         },
         {
@@ -169,6 +169,8 @@
      */
     function closeSummaryEditor (e) {
 
+        document.getElementById("SummaryType").value = "";
+        document.getElementById("SummaryPrompt").value = "";
         let panel = document.getElementById("NewSummaryField");
         panel.classList.remove("opened");
         panel.classList.add("closed");
@@ -195,6 +197,8 @@
 
             deleteButton.innerHTML = "remove";
             deleteButton.setAttribute("data-summary-id", item.value);
+            deleteButton.classList.add("btn");
+            deleteButton.classList.add("small");
             deleteButton.addEventListener("click", (e) => handleDeleteSummaryClick(e));
             listItem.appendChild(deleteButton);
 
@@ -263,9 +267,10 @@
             // Add to summaryList
             summaryList.push(summaryItem);
 
-            // Save + render data
+            // Save, render, clean up form
             saveData();
             renderSummaries();
+            closeSummaryEditor();
         }
 
     }

@@ -17,38 +17,47 @@
 
         <div class="section">
 
-            <ul id="FieldList"></ul>
+            <h2>Content Summaries</h2>
+
             <button id="OpenNewSummaryField" class="btn">Add Summary Field</button>
 
+            <div id="NewSummaryField" class="panel closed" style="margin-top: 1em;">
+
+                <div class="row">
+                    <label for="SummaryType">Type of Summary</label>
+                    <select id="SummaryType"></select>
+                </div>
+
+                <div class="row">
+                    <label for="SummaryPrompt">Prompt</label>
+                    <input type="text" id="SummaryPrompt" disabled />
+                </div>
+
+                <button id="AddSummaryField" class="btn">Add to List</button>
+
+            </div>
+
+            <ul id="SummaryList" class="summary-list"></ul>
         </div>
 
-        <div id="NewSummaryField" class="panel closed">
+        <div class="section">
 
-            <div class="row">
-                <label for="SummaryType">Type of Summary</label>
-                <select id="SummaryType"></select>
+            <h2>Audiences</h2>
+
+            <div id="NewSummaryField" class="panel">
+
+                <div class="row">
+                    <label for="AudienceType">Rewrite / summarize this article for a different audience:</label>
+                    <select id="AudienceType"></select>
+                </div>
+
             </div>
-
-            <div class="row">
-                <label for="SummaryPrompt">Prompt</label>
-                <input type="text" id="SummaryPrompt" disabled />
-            </div>
-
-            <button id="AddSummaryField" class="btn">Add to List</button>
 
         </div>
 
         <div class="section">
-            <h2>Summaries</h2>
-            <ul id="SummaryList"></ul>
-        </div>
 
-        <div id="NewSummaryField" class="panel">
-
-            <div class="row">
-                <label for="AudienceType">Audience: summarize for a certain audience</label>
-                <select id="AudienceType"></select>
-            </div>
+            <h2></h2>
 
         </div>
 

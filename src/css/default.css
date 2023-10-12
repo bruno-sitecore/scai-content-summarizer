@@ -13,5 +13,11 @@ body { background-color: #EEE; }
 select, input, textarea { display: block; width: 100%; padding: 0.75em; border: 1px solid #AAA; border-radius: 4px; box-shadow: inset 2px 2px 2px #e4e4e4; }
 textarea { width: 100%; height: 200px; padding: 1em; }
 
+ul.summary-list { padding: 0 1em; }
+ul.summary-list li {  list-style-type: none; background-color: rgb(255, 255, 255); box-shadow: 0 4px 16px #AAA; padding: 1em; margin-bottom: 1em; border-radius: 6px; }
+ul.summary-list li h3 { margin: 0; display: inline-block; }
+ul.summary-list li button { float: right; }
+
 .btn { padding: 0.75em 2em; box-shadow: 0 2px 0 #115063; border-radius: 3px; border: 0; background-color: #219bc0; color: #FFF; text-shadow: 1px 1px 0 #000; font-weight: bold; }
+.btn.small { padding: 0.25em 1em; }
 .btn:active { position: relative; top: 2px; box-shadow: none; }
