@@ -43,48 +43,80 @@
         }
     ];
 
+    let audienceOptions = [
+
+        {
+            "value": "biking-fanatic",
+            "label": "Biking Fanatic",
+            "prompt": "loves mountain biking"
+        },
+        {
+            "value": "avid-hiker",
+            "label": "Avid Hiker",
+            "prompt": "loves hiking in the outdoors"
+        },
+        {
+            "value": "marathon-runner",
+            "label": "Marathon Runner",
+            "prompt": "regularly enjoys running marathons"
+        }
+
+    ];
+
     function init () {
 
-        populateSummaryTypeDropdown();
+        populateDropdowns();
         wireUI();
 
     }
 
-    function populateSummaryTypeDropdown () {
+    function populateDropdowns () {
 
+        // Summary Type dropdown
         let summaryType = document.getElementById("SummaryType");
+        buildPromptDropdown(summaryType, summaryOptions);
+
+        // Audience modifier dropdown
+        // TODO: in the future, these audiences should be pulled from Content Hub, Personalize, etc.
+        let audienceType = document.getElementById("AudienceType");
+        buildPromptDropdown(audienceType, audienceOptions);
+
+    }
+
+    function buildPromptDropdown (dropdown, data) {
 
         // Clear dropdown
-        for (let pos = summaryType.options.length; pos >= 0; pos--) {
-            summaryType.options.remove(pos);
+        for (let pos = dropdown.options.length; pos >= 0; pos--) {
+            dropdown.options.remove(pos);
         }
 
         // Populate (blank option first, then option list)
         let option = document.createElement("option");
         option.value = "";
         option.text = "";
-        summaryType.add(option);
+        dropdown.add(option);
 
-        summaryOptions.forEach((item) => {
+        data.forEach((item) => {
 
             let option = document.createElement("option");
             option.value = item.value;
             option.text = item.label;
             option.setAttribute("data-prompt", item.prompt);
 
-            summaryType.add(option);
+            dropdown.add(option);
 
         });
-
     }
 
     function wireUI () {
 
+        // "Add Summary Field" button should open the Summary Editor
         let openAddSummary = document.getElementById("OpenNewSummaryField");
         if (openAddSummary) {
             openAddSummary.addEventListener("click", (e) => openSummaryEditor(e));
         }
 
+        // When "Type of Summary" dropdown changes value, update the form with the correct prompt
         let summaryType = document.getElementById("SummaryType");
         if (summaryType) {
             summaryType.addEventListener("change", (e) => handleSummaryTypeChange(e));
