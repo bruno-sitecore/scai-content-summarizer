@@ -319,10 +319,24 @@
 
     }
 
-
+    /**
+     * Clears all values from the form, clear user lists, re-saves data to localStorage, and triggers a re-render.
+     * @param {object} e - 'click' event object (button).
+     */
     function clearForm (e) {
 
-        alert("CLEAR");
+        // Reset audience type dropdown
+        let audienceType = document.getElementById("AudienceType");
+        if (audienceType) { audienceType.value = ""; }
+
+        // Reset summary editor form
+        closeSummaryEditor();
+
+        // User summaries
+        summaryList = [];
+
+        saveData();
+        renderSummaries();
 
     }
 
