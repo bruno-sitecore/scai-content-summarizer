@@ -1,7 +1,7 @@
 html { box-sizing: border-box; }
 *, *:before, *:after { box-sizing: inherit; }
 
-body { background-color: #EEE; }
+body { background-color: #EEE; font-family: sans-serif; }
 
 .section { margin-bottom: 1em; }
 
