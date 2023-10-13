@@ -149,6 +149,18 @@
             audienceType.addEventListener("change", (e) => handleAudienceTypeChange(e));
         }
 
+        // When "Generate" is clicked, run the summary generation process
+        let generate = document.getElementById("Generate");
+        if (generate) {
+            generate.addEventListener("click", (e) => generateSummaries(e));
+        }
+
+        // When "Clear" is clicked, clear the form and user data in memory (summaryList)
+        let clear = document.getElementById("Clear");
+        if (clear) {
+            clear.addEventListener("click", (e) => clearForm(e));
+        }
+
     }
 
     /**
@@ -298,6 +310,20 @@
 
         saveData();
         renderSummaries();
+    }
+
+
+    function generateSummaries (e) {
+
+        alert("GENERATE");
+
+    }
+
+
+    function clearForm (e) {
+
+        alert("CLEAR");
+
     }
 
     init();
