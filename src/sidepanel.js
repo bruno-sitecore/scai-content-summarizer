@@ -339,11 +339,16 @@
             }
         ];
 
-        // Audience type
+        // Audience type; show/hide based on audience dropdown
         let audienceType = document.getElementById("AudienceType");
         let audienceOutput = document.getElementById("AudienceOutput");
-        audienceOutput.innerHTML = `Custom audience: ${audienceType.options[audienceType.selectedIndex].text}`;
-        audienceOutput.style.display = "block";
+
+        if (audienceType && audienceType.selectedIndex > 0) {
+            audienceOutput.innerHTML = `Custom audience: ${audienceType.options[audienceType.selectedIndex].text}`;
+            audienceOutput.style.display = "block";
+        } else {
+            audienceOutput.style.display = "none";
+        }
 
     }
 
