@@ -315,7 +315,35 @@
 
     function generateSummaries (e) {
 
-        alert("GENERATE");
+        // Send queries to OpenAI
+
+        // Verify response is okay or not
+
+        // Build output
+        let data = [
+            {
+                "value": "title",
+                "summary": "Lorem Ipsum Dolor Sit Amet, Consectetur Adipiscing Elit"
+            },
+            {
+                "value": "long-summary",
+                "summary": "Sed tempus risus eget ipsum finibus, sit amet bibendum ligula aliquam. Proin mattis dui non nisl ullamcorper malesuada. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce placerat nulla laoreet, egestas diam non, cursus justo. Nunc fringilla diam cursus erat varius, ac viverra urna suscipit. Nam iaculis ex vitae laoreet pretium. Mauris tincidunt augue lorem, a scelerisque neque porta sed. Praesent vel molestie tellus. Nullam imperdiet volutpat odio quis dignissim."
+            },
+            {
+                "value": "social-x",
+                "summary": "Vivamus facilisis lorem sed faucibus porttitor. Sed leo massa, fringilla nec vulputate quis, iaculis sit amet tortor."
+            },
+            {
+                "value": "meta-keywords",
+                "summary": "turpis,magna,bibendum,felis,quis,condimentum,dolor,sem,vel,dui"
+            }
+        ];
+
+        // Audience type
+        let audienceType = document.getElementById("AudienceType");
+        let audienceOutput = document.getElementById("AudienceOutput");
+        audienceOutput.innerHTML = `Custom audience: ${audienceType.options[audienceType.selectedIndex].text}`;
+        audienceOutput.style.display = "block";
 
     }
 
