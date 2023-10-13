@@ -350,6 +350,27 @@
             audienceOutput.style.display = "none";
         }
 
+        // Summaries
+        let outputList = document.getElementById("Output");
+
+        data.forEach((result) => {
+
+            let listItem = document.createElement("li");
+            let header = document.createElement("h3");
+            let textarea = document.createElement("textarea");
+
+            header.innerHTML = result.value;
+
+            textarea.setAttribute("readonly", "readonly");
+            textarea.value = result.summary;
+            textarea.addEventListener("click", (e) => e.currentTarget.select());
+
+            listItem.appendChild(header);
+            listItem.appendChild(textarea);
+
+            outputList.appendChild(listItem);
+        });
+
     }
 
     /**
@@ -360,13 +381,21 @@
 
         // Reset audience type dropdown
         let audienceType = document.getElementById("AudienceType");
-        if (audienceType) { audienceType.value = ""; }
+        if (audienceType) {
+            audienceType.value = "";
+        }
 
         // Reset summary editor form
         closeSummaryEditor();
 
         // User summaries
         summaryList = [];
+
+        // Output
+        document.getElementById("AudienceOutput").style.display = "none";
+
+        let outputList = document.getElementById("Output");
+        if (outputList) { outputList.innerHTML = ""; }
 
         saveData();
         renderSummaries();

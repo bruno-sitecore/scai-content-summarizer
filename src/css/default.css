@@ -18,6 +18,10 @@ ul.summary-list li {  list-style-type: none; background-color: rgb(255, 255, 255
 ul.summary-list li h3 { margin: 0; display: inline-block; }
 ul.summary-list li button { float: right; }
 
+ul.output { padding: 0 1em; }
+ul.output textarea { height: 100px; font-family: sans-serif; }
+ul.output li { list-style-type: none; }
+
 .btn { padding: 0.75em 2em; box-shadow: 0 2px 0 #115063; border-radius: 3px; border: 0; background-color: #219bc0; color: #FFF; text-shadow: 1px 1px 0 #000; font-weight: bold; }
 .btn.small { padding: 0.25em 1em; }
 .btn:active { position: relative; top: 2px; box-shadow: none; }
