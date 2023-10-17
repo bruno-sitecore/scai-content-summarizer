@@ -313,6 +313,10 @@
     }
 
 
+    /**
+     * Gathers form data and sends prompts to OpenAI for content generation.
+     * @param {object} e - 'click' event object (Generate button)
+     */
     function generateSummaries (e) {
 
         // Send queries to OpenAI

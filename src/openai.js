@@ -1,3 +1,6 @@
+// TODO: this class may not be necessary if most of the app logic lives in 'sidepanel.js'
+//       consider moving the 'sendPrompt()' method to sidepanel.js to simplify this app
+
 export default class OpenAI {
 
     constructor(apiKey, model, temperature) {
